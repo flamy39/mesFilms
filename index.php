@@ -15,7 +15,7 @@ try {
 } catch (Exception $e) {
     dump($e->getMessage());
 }
-$requete = new CreerGenreRequest("H");
+$requete = new CreerGenreRequest("");
 
 try {
     $useCase->execute($requete);
