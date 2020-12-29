@@ -20,7 +20,7 @@ class InMemoryGenreRepository implements GenreRepositoryInterface
     /**
      * @param Genre $genre
      */
-    public function add(Genre $genre)
+    public function add(Genre $genre) : Genre
     {
         $reflectionClass = new \ReflectionClass(Genre::class);
         try {
@@ -28,6 +28,7 @@ class InMemoryGenreRepository implements GenreRepositoryInterface
             $property->setAccessible(true);
             $property->setValue($genre,random_int(1,10000));
             $this->genres->add($genre);
+            return $genre;
         } catch (\ReflectionException $e) {
             dump("Problème de reflexion");
         }

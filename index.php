@@ -11,14 +11,8 @@ $useCase = new CreerGenre($repository);
 
 $requete = new CreerGenreRequest("Action");
 try {
-    $useCase->execute($requete);
-} catch (Exception $e) {
-    dump($e->getMessage());
-}
-$requete = new CreerGenreRequest("");
-
-try {
-    $useCase->execute($requete);
+    $response = $useCase->execute($requete);
+    dump($response->genre);
 } catch (Exception $e) {
     dump($e->getMessage());
 }

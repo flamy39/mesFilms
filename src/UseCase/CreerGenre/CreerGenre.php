@@ -22,12 +22,14 @@ class CreerGenre
 
     /**
      * @param CreerGenreRequest $requete
+     * @throws \Exception
      */
-    public function execute(CreerGenreRequest $requete) {
+    public function execute(CreerGenreRequest $requete) : CreerGenreResponse {
         $genre = new Genre($requete->libelle);
         try {
             $this->validation($genre);
-            $this->repository->add($genre);
+            $genre = $this->repository->add($genre);
+            return new CreerGenreResponse($genre);
         } catch (LazyAssertionException $e){
             throw new \Exception($e->getMessage());
         }
